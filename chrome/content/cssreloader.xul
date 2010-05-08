@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<overlay id="cssreloaderOverlay" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+	<script type="application/x-javascript" src="chrome://cssreloader/content/cssreloader.js" />
+
+	<menupopup id="menu_viewPopup">
+		<menuitem id="menu_viewpopup_cssreloader" insertbefore="viewFullZoomMenu" label="Reload CSS" key="cssReloaderActivate" oncommand="CSSreloader.reload();"/>
+	</menupopup>
+	 
+	<menupopup id="contentAreaContextMenu">
+		<menuitem id="menu_contextmenu_cssreloader" insertafter="context-reload" label="Reload CSS" key="cssReloaderActivate" oncommand="CSSreloader.reload();"/>
+	</menupopup>	
+	
+	<keyset id="mainKeyset">
+		<key id="cssReloaderActivate" keycode="VK_F9" oncommand="CSSreloader.reload();" />
+	</keyset>
+
+	</overlay>
