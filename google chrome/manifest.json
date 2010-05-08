@@ -1,0 +1,19 @@
+{
+	"name": "CSS Reloader",
+	"version": "1.0",
+	"description": "CSS Reloader is an extension that allows you to reload all the CSS of any site without you have to reload the page itself.",
+	"permissions": [
+		"http://*/*",
+		"https://*/*"
+	],
+	"icons": { 
+		"48": "cssreloader_icon_48.png",
+        "128": "cssreloader_icon_128.png" 
+	},
+	"content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["cssreloader.js"]
+    }
+  ]
+}
