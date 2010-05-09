@@ -4,15 +4,15 @@ CSS Reloader is a browser extension for Mozilla Firefox and Google Chrome, that 
 
 == Installation
 
-    * Mozilla Firefox
-	Grab the latests version for Firefox at https://addons.mozilla.org/en-US/firefox/addon/46211
+=== Mozilla Firefox
+Grab the latests version for Firefox at https://addons.mozilla.org/en-US/firefox/addon/46211
 	
-    * Google Chrome
-	Grab the latests version for Chrome at https://chrome.google.com/extensions/detail/dnfpcpfijpdhabaoieccoclghgplmpbd 
+=== Google Chrome
+Grab the latests version for Chrome at https://chrome.google.com/extensions/detail/dnfpcpfijpdhabaoieccoclghgplmpbd 
 	
 == Feedback
 
-Feel free to Report Issues on GitHubk, or fork the source to improve it!
+Feel free to Report Issues on GitHub, or fork the source to improve it!
 
 * View Source on GitHub (http://github.com/auchenberg/css-reloader)
 * Report Issues on GitHub (http://github.com/auchenberg/css-reloader/issues)
