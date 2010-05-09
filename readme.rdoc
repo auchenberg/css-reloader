@@ -1,6 +1,10 @@
 = CSS Reloader
 
-CSS Reloader is a browser extension for Mozilla Firefox and Google Chrome, that allows you to reload all the CSS of any site without you have to reload the page itself. The goal for this browser extension is to enable developers to become more productive.
+CSS Reloader is a browser extension for Mozilla Firefox and Google Chrome, that allows you to reload all the CSS/stylesheets of any site without you have to reload the page itself. The goal for this browser extension is to enable developers to become more productive.
+
+== Usage
+
+You can reload all stylesheets via the keyboard shortcut F9, or via the context-menu's option "Reload CSS".
 
 == Installation
 
@@ -12,7 +16,7 @@ Grab the latests version for Chrome at https://chrome.google.com/extensions/deta
 	
 == Feedback
 
-Feel free to Report Issues on GitHub, or fork the source to improve it!
+Feel free to report issues on GitHub! It's much needed!
 
 * View Source on GitHub (http://github.com/auchenberg/css-reloader)
 * Report Issues on GitHub (http://github.com/auchenberg/css-reloader/issues)
