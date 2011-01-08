@@ -8,7 +8,7 @@ It's currently available for Mozilla Firefox and Google Chrome,
 
 You can reload all stylesheets via the keyboard shortcut F9, or via the context-menu's option "Reload CSS".
 
-You can customize the keyboard shortcut under the extensions settings page.
+You are able to customize the keyboard shortcut under the extensions settings page.
 
 == Installation
 
@@ -17,7 +17,11 @@ Grab the latests version for Firefox at https://addons.mozilla.org/en-US/firefox
 	
 === Google Chrome
 Grab the latests version for Chrome at https://chrome.google.com/extensions/detail/dnfpcpfijpdhabaoieccoclghgplmpbd 
-	
+
+== Limitations
+
+CSS Reloader isn't reloading stylesheets references by @import (Been looking into this, and there's not easy solution.)
+
 == Feedback
 
 Feel free to report issues on GitHub! It's much needed!
