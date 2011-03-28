@@ -7,7 +7,7 @@
     <em:id>cssreloader@kenneth.io</em:id>
     <em:name>CSS Reloader</em:name>
     <em:version>1.0.5</em:version>
-    <em:description>Reload your CSS without reloading the page. Use F9, or the "Reload CSS" option within ContextMenu or View-menu</em:description>
+    <em:description>An extension that reloads CSS.</em:description>
     <em:creator>Kenneth Auchenberg</em:creator>
 	<em:homepageURL>http://kenneth.io/</em:homepageURL>
 
