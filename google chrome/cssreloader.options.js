@@ -1,7 +1,7 @@
 (function () {
   var domShortcutInput;
   var storageKey = "shortcutOptions";
-  
+
   function initialize() {
     document.addEventListener("DOMContentLoaded", onDomReady, false);
   }
