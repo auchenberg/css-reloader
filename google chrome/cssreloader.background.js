@@ -7,10 +7,10 @@
     "controlKeySelected" : false,
     "shiftKeySelected": false
   };
-  
+
 	function initialize() {
 		chrome.contextMenus.create({"title": "Reload CSS", "type": "normal", "onclick": onContextMenuClicked});
-	  chrome.extension.onRequest.addListener(onExtensionRequest);
+	  chrome.runtime.onMessage.addListener(onExtensionRequest);
   }
 
   function onExtensionRequest(request, sender, callback) {
@@ -18,15 +18,15 @@
         callback(load_options());
     }
   }
-	
+
 	function onContextMenuClicked(info, tab) {
-		chrome.tabs.sendRequest(tab.id, {action: "reload"});	
+    chrome.tabs.sendMessage(tab.id, {action: "reload"});
 	}
 
   function load_options() {
     var storedObject = localStorage[storageKey];
     var settings;
-    
+
     if(storedObject) {
       settings = JSON.parse(storedObject);
     } else {
@@ -39,7 +39,7 @@
   }
 
 	initialize();
-	
+
 })();
 
 
