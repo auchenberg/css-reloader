@@ -1,97 +1,101 @@
 (function () {
-  var domShortcutInput, shortcutOptions;
+    var domShortcutInput, shortcutOptions;
 
-  function initialize() {
-    document.addEventListener("DOMContentLoaded", onDomReady, false);
-  }
-
-  function handleKeys(keyIdentifier, isAlt, isControl, isShift) {
-    keyIdentifier = keyIdentifier;
-
-    if (isControl) {
-      addVisualKey('Ctrl');
+    function initialize() {
+        document.addEventListener("DOMContentLoaded", onDomReady, false);
     }
 
-    if (isShift) {
-      addVisualKey('Shift');
+    function handleKeys(keyIdentifier, isAlt, isControl, isShift) {
+        keyIdentifier = keyIdentifier;
+
+        if (isControl) {
+            addVisualKey('Ctrl');
+        }
+
+        if (isShift) {
+            addVisualKey('Shift');
+        }
+
+        if (isAlt) {
+            addVisualKey('Alt');
+        }
+
+        if ( (/^U+(.*)$/.test(keyIdentifier) ) ) {
+            var key = String.fromCharCode(keyIdentifier.replace('U+', '0x'));
+            addVisualKey(key);
+        } else {
+            addVisualKey(keyIdentifier);
+        }
     }
 
-    if (isAlt) {
-      addVisualKey('Alt');
+    function onDomReady() {
+        domShortcutInput = document.querySelector('.shortcut input');
+        document.querySelector('button').addEventListener("click", onButtonClicked, false);
+        domShortcutInput.addEventListener("focus", onShortcutFocus, false);
+
+        chrome.extension.sendRequest({'action' : 'getSettings'}, function(settings) {
+            shortcutOptions = settings;
+            handleKeys(shortcutOptions.keyIdentifier, shortcutOptions.altKeySelected, shortcutOptions.controlKeySelected, shortcutOptions.shiftKeySelected);
+        });
     }
 
-    if ( (/^U+(.*)$/.test(keyIdentifier) ) ) {
-      var key = String.fromCharCode(keyIdentifier.replace('U+', '0x'));
-      addVisualKey(key);
-    } else {
-      addVisualKey(keyIdentifier);
-    }
-  }
-
-  function onDomReady() {
-    domShortcutInput = document.querySelector('.shortcut input');
-    document.querySelector('button').addEventListener("click", onButtonClicked, false);
-    domShortcutInput.addEventListener("focus", onShortcutFocus, false);
-
-    chrome.extension.sendRequest({'action' : 'getSettings'}, function(settings) {
-      shortcutOptions = settings;
-      handleKeys(shortcutOptions.keyIdentifier, shortcutOptions.altKeySelected, shortcutOptions.controlKeySelected, shortcutOptions.shiftKeySelected);
-    });
-  }
-
-  function onShortcutFocus() {
-    document.addEventListener("keydown", onDocumentKeyDown, false);
-    domShortcutInput.addEventListener("blur", onShortcutBlur, false);
-  }
-
-  function onShortcutBlur() {
-    document.removeEventListener("keydown", onDocumentKeyDown, false);
-  }
-
-  function addVisualKey(key) {
-    var domShortcutKeys = document.querySelector('.shortcut .keys');
-    var domKeys = document.querySelectorAll('.shortcut .keys div');
-
-    var domNewContainer = document.createElement("div");
-    var domNewKbd = document.createElement("kbd");
-    domNewKbd.innerHTML = key;
-    if (domKeys.length > 0) {
-      domNewContainer.appendChild(document.createTextNode(' + '));
-    }
-    domNewContainer.appendChild(domNewKbd);
-    domShortcutKeys.appendChild(domNewContainer);
-  }
-
-  function onDocumentKeyDown(e) {
-    var domKeys = document.querySelector('.shortcut .keys');
-    if (domKeys.hasChildNodes()) {
-      while (domKeys.childNodes.length >= 1) {
-        domKeys.removeChild(domKeys.firstChild);
-      }
+    function onShortcutFocus() {
+        document.addEventListener("keydown", onDocumentKeyDown, false);
+        domShortcutInput.addEventListener("blur", onShortcutBlur, false);
     }
 
-    shortcutOptions = {
-      "keyIdentifier" :  e.keyIdentifier,
-      "altKeySelected": e.altKey,
-      "controlKeySelected" : e.ctrlKey,
-      "shiftKeySelected": e.shiftKey
-    };
+    function onShortcutBlur() {
+        document.removeEventListener("keydown", onDocumentKeyDown, false);
+    }
 
-    handleKeys(e.keyIdentifier, e.altKey, e.ctrlKey, e.shiftKey);
-  }
+    function addVisualKey(key) {
+        var domShortcutKeys = document.querySelector('.shortcut .keys');
+        var domKeys = document.querySelectorAll('.shortcut .keys div');
 
-  // Saves options to localStorage.
-  function onButtonClicked() {
-    chrome.extension.sendRequest({'action' : 'saveSettings', 'data' : shortcutOptions});
+        var domNewContainer = document.createElement("div");
+        var domNewKbd = document.createElement("kbd");
+        domNewKbd.innerHTML = key;
+        
+        if (domKeys.length > 0) {
+            domNewContainer.appendChild(document.createTextNode(' + '));
+        }
 
-    // Update status to let user know options were saved.
-    var status = document.querySelector('.status');
-    status.innerHTML = "Options Saved...";
-    setTimeout(function() {
-      status.innerHTML = "";
-    }, 1500);
-  }
+        domNewContainer.appendChild(domNewKbd);
+        domShortcutKeys.appendChild(domNewContainer);
+    }
 
-  initialize();
+    function onDocumentKeyDown(e) {
+        var domKeys = document.querySelector('.shortcut .keys');
+        if (domKeys.hasChildNodes()) {
+            while (domKeys.childNodes.length >= 1) {
+                domKeys.removeChild(domKeys.firstChild);
+            }
+        }
+
+        shortcutOptions = {
+            "keyIdentifier" :      e.keyIdentifier,
+            "altKeySelected":      e.altKey,
+            "controlKeySelected" : e.ctrlKey,
+            "shiftKeySelected":    e.shiftKey
+        };
+
+        handleKeys(e.keyIdentifier, e.altKey, e.ctrlKey, e.shiftKey);
+    }
+
+    // Saves options to localStorage.
+    function onButtonClicked() {
+        chrome.extension.sendRequest({'action' : 'saveSettings', 'data' : shortcutOptions});
+
+        // Update status to let user know options were saved.
+        var status = document.querySelector('.status');
+        status.innerHTML = "Options Saved...";
+        
+        setTimeout(function() {
+          status.innerHTML = "";
+        }, 1500);
+
+    }
+
+    initialize();
 
 })();
