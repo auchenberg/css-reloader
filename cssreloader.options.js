@@ -6,7 +6,8 @@
   }
 
   function handleKeys(keyIdentifier, isAlt, isControl, isShift) {
-    keyIdentifier = keyIdentifier.replace('U+', '');
+    keyIdentifier = keyIdentifier;
+
     if (isControl) {
       addVisualKey('Ctrl');
     }
@@ -19,8 +20,8 @@
       addVisualKey('Alt');
     }
 
-    if ((/^[A-F\d]{4}$/.test(keyIdentifier))) {
-      var key = eval('"\\u' + keyIdentifier + '"');
+    if ( (/^U+(.*)$/.test(keyIdentifier) ) ) {
+      var key = String.fromCharCode(keyIdentifier.replace('U+', '0x'));
       addVisualKey(key);
     } else {
       addVisualKey(keyIdentifier);
@@ -39,7 +40,7 @@
   }
 
   function onShortcutFocus() {
-    document.addEventListener("keypress", onDocumentKeyDown, false);
+    document.addEventListener("keydown", onDocumentKeyDown, false);
     domShortcutInput.addEventListener("blur", onShortcutBlur, false);
   }
 
