@@ -71,10 +71,10 @@
         }
 
         shortcutOptions = {
-            "key" :      e.key,
-            "altKeySelected":      e.altKey,
+            "key"                : e.key,
+            "altKeySelected"     : e.altKey,
             "controlKeySelected" : e.ctrlKey,
-            "shiftKeySelected":    e.shiftKey
+            "shiftKeySelected"   : e.shiftKey
         };
 
         handleKeys(e.key, e.altKey, e.ctrlKey, e.shiftKey);

@@ -2,7 +2,7 @@
 
     var storageKey = "shortcutOptions";
     var defaultShortcutOptions = {
-        "keyIdentifier"      : 'F9',
+        "key"                : 'F9',
         "altKeySelected"     : false,
         "controlKeySelected" : false,
         "shiftKeySelected"   : false

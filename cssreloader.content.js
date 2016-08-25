@@ -21,7 +21,7 @@
     }
 
     function onWindowKeyDown(e) {
-        if(e.key == shortcutSettings["keyIdentifier"] &&
+        if(e.key == shortcutSettings["key"] &&
         e.shiftKey ===  shortcutSettings["shiftKeySelected"] &&
         e.altKey === shortcutSettings["altKeySelected"] &&
         e.ctrlKey === shortcutSettings["controlKeySelected"])
