@@ -1,8 +1,8 @@
 = CSS Reloader
 
-CSS Reloader is a browser extension that allows you to reload CSS without reloading the page itself.
+CSS Reloader is a browser extension which allows developers to reload CSS without reloading the page itself.
 
-It's currently available for Mozilla Firefox and Google Chrome, 
+It's currently available for Mozilla Firefox and Google Chrome.
 
 == Usage
 
