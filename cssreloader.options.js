@@ -5,9 +5,7 @@
         document.addEventListener("DOMContentLoaded", onDomReady, false);
     }
 
-    function handleKeys(keyIdentifier, isAlt, isControl, isShift) {
-        keyIdentifier = keyIdentifier;
-
+    function handleKeys(key, isAlt, isControl, isShift) {
         if (isControl) {
             addVisualKey('Ctrl');
         }
@@ -20,11 +18,11 @@
             addVisualKey('Alt');
         }
 
-        if ( (/^U+(.*)$/.test(keyIdentifier) ) ) {
-            var key = String.fromCharCode(keyIdentifier.replace('U+', '0x'));
+        if ( (/^U+(.*)$/.test(key) ) ) {
+            var key = String.fromCharCode(key.replace('U+', '0x'));
             addVisualKey(key);
         } else {
-            addVisualKey(keyIdentifier);
+            addVisualKey(key);
         }
     }
 
@@ -73,13 +71,13 @@
         }
 
         shortcutOptions = {
-            "keyIdentifier" :      e.keyIdentifier,
-            "altKeySelected":      e.altKey,
+            "keyIdentifier"      : e.key,
+            "altKeySelected"     : e.altKey,
             "controlKeySelected" : e.ctrlKey,
-            "shiftKeySelected":    e.shiftKey
+            "shiftKeySelected"   : e.shiftKey
         };
 
-        handleKeys(e.keyIdentifier, e.altKey, e.ctrlKey, e.shiftKey);
+        handleKeys(e.key, e.altKey, e.ctrlKey, e.shiftKey);
     }
 
     // Saves options to localStorage.
