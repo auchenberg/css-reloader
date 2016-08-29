@@ -33,7 +33,7 @@
 
         chrome.extension.sendRequest({'action' : 'getSettings'}, function(settings) {
             shortcutOptions = settings;
-            handleKeys(shortcutOptions.key, shortcutOptions.altKeySelected, shortcutOptions.controlKeySelected, shortcutOptions.shiftKeySelected);
+            handleKeys(shortcutOptions.keyIdentifier, shortcutOptions.altKeySelected, shortcutOptions.controlKeySelected, shortcutOptions.shiftKeySelected);
         });
     }
 
@@ -71,7 +71,7 @@
         }
 
         shortcutOptions = {
-            "key"                : e.key,
+            "keyIdentifier"      : e.key,
             "altKeySelected"     : e.altKey,
             "controlKeySelected" : e.ctrlKey,
             "shiftKeySelected"   : e.shiftKey
