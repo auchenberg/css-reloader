@@ -35,22 +35,32 @@
 
   kbd { font-size: 20px; }
 
-  .content .shortcut {
-
+  .content .group {
     padding: 0;
     margin-bottom: 50px;
+  }
+  .group label {
+    display: block;
+    clear: both;
+  }
+  .group input,
+  .group textarea {
+    display: block;
+    clear: both;
+    padding: 5px;
+    border-radius: 10px;
+    -webkit-box-shadow: rgba(190, 190, 190, 0.699219) 0px 1px 3px inset;
+    border: 0;
+    outline: 0;
+  }
+  .content .shortcut {
     height: 60px;
     position: relative;
   }
 
   .content .shortcut input {
-    text-indent: -5000px;
-    padding: 5px;
-    border-radius: 10px;
-    -webkit-box-shadow: rgba(190, 190, 190, 0.699219) 0px 1px 3px inset;
     font-size: 20px;
-    border: 0;
-    outline: 0;
+    text-indent: -5000px;
     position: absolute;
     left: 0px;
     right: 0px;
@@ -68,7 +78,7 @@
 
 
   .content .shortcut div { display: inline-block; padding-right: 5px; }
-  .content .shortcut input:focus { -webkit-box-shadow: rgba(0, 0, 0, 1) 0px 1px 3px inset;}
+  .content .group input:focus { -webkit-box-shadow: rgba(0, 0, 0, 1) 0px 1px 3px inset;}
   .status {padding-left:20px; display: inline-block; }
 
   button {
@@ -90,11 +100,18 @@
 
   <h1>CSS Reloader</h1>
   <h2>An extension that reloads CSS.</h2>
-  <h3>Please specify the keyboard shortcut, by pressing combination in field below:</h3>
 
-  <div class="shortcut light group">
-    <input type="text" value="Press a key"/>
-    <div class="keys"></div>
+  <div class="light group">
+    <label>Please specify the keyboard shortcut, by pressing combination in field below:</label>
+    <div class="shortcut">
+      <input type="text" value="Press a key"/>
+      <div class="keys"></div>
+    </div>
+  </div>
+
+  <div class="group">
+    <label for="domain-blacklist">Blacklist one or more domain names by separating multiple domain names with commas</label>
+    <textarea name="blacklist" id="domain-blacklist" placeholder="fonts.googleapis.com,bootstrapcdn.com" style="width:455px;height:130px;"></textarea>
   </div>
 
   <button>Save settings</button>

@@ -1,5 +1,5 @@
 (function () {
-    var domShortcutInput, shortcutOptions;
+    var domShortcutInput, allSettings;
 
     function initialize() {
         document.addEventListener("DOMContentLoaded", onDomReady, false);
@@ -32,8 +32,9 @@
         domShortcutInput.addEventListener("focus", onShortcutFocus, false);
 
         chrome.extension.sendRequest({'action' : 'getSettings'}, function(settings) {
-            shortcutOptions = settings;
-            handleKeys(shortcutOptions.keyIdentifier, shortcutOptions.altKeySelected, shortcutOptions.controlKeySelected, shortcutOptions.shiftKeySelected);
+            allSettings = settings;
+            handleKeys(allSettings.keyIdentifier, allSettings.altKeySelected, allSettings.controlKeySelected, allSettings.shiftKeySelected);
+            document.getElementById("domain-blacklist").value = allSettings.blacklist.toString();
         });
     }
 
@@ -70,7 +71,7 @@
             }
         }
 
-        shortcutOptions = {
+        allSettings = {
             "keyIdentifier"      : e.key,
             "altKeySelected"     : e.altKey,
             "controlKeySelected" : e.ctrlKey,
@@ -80,9 +81,21 @@
         handleKeys(e.key, e.altKey, e.ctrlKey, e.shiftKey);
     }
 
+    //gets the list of domains from the textarea, formats into a proper array
+    function getBlacklistDomains() {
+      var domainElement = document.getElementById("domain-blacklist");
+      var domains = domainElement.value.trim();
+      if (domains.length > 0) {
+        domains = domains.split(",");
+      }
+
+      return domains;
+    }
+
     // Saves options to localStorage.
     function onButtonClicked() {
-        chrome.extension.sendRequest({'action' : 'saveSettings', 'data' : shortcutOptions});
+        allSettings.blacklist = getBlacklistDomains();
+        chrome.extension.sendRequest({'action' : 'saveSettings', 'data' : allSettings});
 
         // Update status to let user know options were saved.
         var status = document.querySelector('.status');
