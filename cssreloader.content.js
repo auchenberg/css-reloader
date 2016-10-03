@@ -13,23 +13,23 @@
         for (var i = 0, element; element = elements[i]; i++) {
             var href = element.href;
             if (!domainIsBlacklisted(getDomain(href))) {
-              var href = href.replace(/[?&]cssReloader=([^&$]*)/,'');
-              element.href = href + (href.indexOf('?')>=0?'&':'?') + 'cssReloader=' + (new Date().valueOf());
+                var href = href.replace(/[?&]cssReloader=([^&$]*)/,'');
+                element.href = href + (href.indexOf('?')>=0?'&':'?') + 'cssReloader=' + (new Date().valueOf());
             }
         }
     }
 
     function getDomain(url) {
-      return url.replace('http://','').replace('https://','').split('/')[0];
+        return url.replace('http://','').replace('https://','').split('/')[0];
     }
 
     function domainIsBlacklisted(domain) {
-      for (var i=0;i<allSettings["blacklist"].length;i++) {
-        if (allSettings["blacklist"][i] == domain) {
-          return true;
+        for (var i=0;i<allSettings["blacklist"].length;i++) {
+            if (allSettings["blacklist"][i] == domain) {
+                return true;
+            }
         }
-      }
-      return false;
+        return false;
     }
 
     function onGetSettings(settings) {
