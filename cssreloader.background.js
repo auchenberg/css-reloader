@@ -5,7 +5,8 @@
         "keyIdentifier"      : 'F9',
         "altKeySelected"     : false,
         "controlKeySelected" : false,
-        "shiftKeySelected"   : false
+        "shiftKeySelected"   : false,
+        "blacklist"          : []
     };
   
 	function initialize() {
