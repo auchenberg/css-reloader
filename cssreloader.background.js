@@ -42,6 +42,12 @@
 
         if(storedObject) {
             settings = JSON.parse(storedObject);
+            
+            // new blacklist setting needs to be added by hand
+            // if it's not in the localStorage settings
+            if (!"blacklist" in settings) {
+              settings["blacklist"] = [];
+            }
         } else {
             // Going for default settings
             settings = defaultShortcutOptions;
