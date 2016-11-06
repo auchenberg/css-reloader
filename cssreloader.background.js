@@ -45,8 +45,9 @@
             
             // new blacklist setting needs to be added by hand
             // if it's not in the localStorage settings
-            if (!"blacklist" in settings) {
+            if (! ("blacklist" in settings)) {
               settings["blacklist"] = [];
+              saveSettings(settings);
             }
         } else {
             // Going for default settings
