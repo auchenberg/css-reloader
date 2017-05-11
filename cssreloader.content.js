@@ -37,6 +37,7 @@
     }
 
     function onWindowKeyDown(e) {
+        if (!allSettings) return;
         if(e.key == allSettings["keyIdentifier"] &&
         e.shiftKey ===  allSettings["shiftKeySelected"] &&
         e.altKey === allSettings["altKeySelected"] &&
