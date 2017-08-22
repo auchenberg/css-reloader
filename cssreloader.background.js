@@ -9,13 +9,13 @@
   }
 
   function initialize () {
-    chrome.contextMenus.create({'title': 'Reload CSS', 'type': 'normal', 'onclick': onContextMenuClicked})
-    chrome.extension.onRequest.addListener(onExtensionRequest)
+    browser.contextMenus.create({'title': 'Reload CSS', 'type': 'normal', 'onclick': onContextMenuClicked})
+    browser.runtime.onMessage.addListener(onExtensionMessage)
   }
 
-  function onExtensionRequest (request, sender, callback) {
+  function onExtensionMessage (request, sender, callback) {
     if (request.action == 'getSettings') {
-      callback(getSettings())
+      return Promise.resolve(getSettings())
     }
 
     if (request.action == 'saveSettings') {
@@ -24,7 +24,7 @@
   }
 
   function onContextMenuClicked (info, tab) {
-    chrome.tabs.sendRequest(tab.id, {action: 'reload'})
+    browser.tabs.sendMessage(tab.id, {action: 'reload'})
   }
 
   function saveSettings (settings) {

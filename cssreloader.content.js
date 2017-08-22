@@ -4,8 +4,8 @@
     
     function initialize() {
         document.addEventListener("keydown", onWindowKeyDown, false);
-        chrome.extension.onRequest.addListener(onExtensionRequest);
-        chrome.extension.sendRequest({'action' : 'getSettings'}, onGetSettings);
+        browser.runtime.onMessage.addListener(onExtensionMessage);
+        browser.runtime.sendMessage({'action' : 'getSettings'}, onGetSettings);
     }
 
     function reload() {
@@ -47,7 +47,7 @@
         }
     }
 
-    function onExtensionRequest(request, sender) {
+    function onExtensionMessage(request, sender) {
         if (request.action == "reload") {
             reload();
         }
