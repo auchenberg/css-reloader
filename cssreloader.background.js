@@ -15,7 +15,7 @@
 
   function onExtensionMessage (request, sender, callback) {
     if (request.action == 'getSettings') {
-      callback(getSettings())
+      return Promise.resolve(getSettings())
     }
 
     if (request.action == 'saveSettings') {

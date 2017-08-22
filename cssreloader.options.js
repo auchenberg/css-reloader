@@ -31,7 +31,7 @@
         document.querySelector('button').addEventListener("click", onButtonClicked, false);
         domShortcutInput.addEventListener("focus", onShortcutFocus, false);
 
-        browser.runtime.sendMessage({'action' : 'getSettings'}, function(settings) {
+        browser.runtime.sendMessage({ 'action': 'getSettings' }).then(function(settings) {
             allSettings = settings;
             handleKeys(allSettings.keyIdentifier, allSettings.altKeySelected, allSettings.controlKeySelected, allSettings.shiftKeySelected);
             document.getElementById("domain-blacklist").value = allSettings.blacklist.toString();
