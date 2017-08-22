@@ -31,7 +31,7 @@
         document.querySelector('button').addEventListener("click", onButtonClicked, false);
         domShortcutInput.addEventListener("focus", onShortcutFocus, false);
 
-        chrome.extension.sendRequest({'action' : 'getSettings'}, function(settings) {
+        browser.runtime.sendMessage({'action' : 'getSettings'}, function(settings) {
             allSettings = settings;
             handleKeys(allSettings.keyIdentifier, allSettings.altKeySelected, allSettings.controlKeySelected, allSettings.shiftKeySelected);
             document.getElementById("domain-blacklist").value = allSettings.blacklist.toString();
@@ -95,7 +95,7 @@
     // Saves options to localStorage.
     function onButtonClicked() {
         allSettings.blacklist = getBlacklistDomains();
-        chrome.extension.sendRequest({'action' : 'saveSettings', 'data' : allSettings});
+        browser.runtime.sendMessage({'action' : 'saveSettings', 'data' : allSettings});
 
         // Update status to let user know options were saved.
         var status = document.querySelector('.status');

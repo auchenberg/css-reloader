@@ -4,7 +4,9 @@
 	"version": "1.1.8",
 	"description": "CSS Reloader is a browser extension which allows developers to reload CSS without reloading the page itself.",
 
-  "options_page" : "options.htm",
+  "options_ui" : {
+		"page": "options.htm"
+	},
   "background": {
     "page": "background.htm"
   },
