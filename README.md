@@ -23,8 +23,11 @@ https://addons.mozilla.org/en-US/firefox/addon/css-reloader
 
 CSS Reloader isn't reloading stylesheets references by @import (Been looking into this, and there's not easy solution.)
 
-##  Feedback
+### WebExtension
+This extension is using a browser polyfil to emulate WebExtensions
+https://github.com/mozilla/webextension-polyfill
 
+##  Feedback
 Feel free to report issues on GitHub! It's much needed!
 
 * View Source on GitHub (http://github.com/auchenberg/css-reloader-chrome)
