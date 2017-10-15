@@ -53,7 +53,7 @@
 
         var domNewContainer = document.createElement("div");
         var domNewKbd = document.createElement("kbd");
-        domNewKbd.innerHTML = key;
+        domNewKbd.textContent = key;
         
         if (domKeys.length > 0) {
             domNewContainer.appendChild(document.createTextNode(' + '));
